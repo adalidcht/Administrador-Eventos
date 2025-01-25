@@ -33,8 +33,8 @@ async function handleLogin(event) {
         }
 
         const user = await response.json();
-        localStorage.setItem('userName', user.Nombre);
-        localStorage.setItem('userId', user.ID);
+        localStorage.setItem('userName', user.nombre);
+        localStorage.setItem('userId', user.$id);
         window.location.href = 'events.html';
     } catch (error) {
         console.error('Error during login:', error);
