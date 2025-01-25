@@ -34,7 +34,7 @@ El Sistema de Administración de Eventos es una aplicación web diseñada para g
 1. **Clona el repositorio**:
 
    ```bash
-   git clone https://github.com/tu-usuario/administracion-eventos.git
+   git clone git@github.com:adalidcht/Administrador-Eventos.git
    ```
 
 2. **Abre el proyecto en Visual Studio 2022**.
