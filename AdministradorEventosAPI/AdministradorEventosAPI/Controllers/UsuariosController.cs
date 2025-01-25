@@ -79,6 +79,21 @@ namespace AdministradorEventosAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            // Asignar el RolID según el nombre del rol recibido
+            if (!string.IsNullOrEmpty(usuario.RolNombre))
+            {
+                var rol = db.Rol.FirstOrDefault(r => r.Nombre.Equals(usuario.RolNombre, StringComparison.OrdinalIgnoreCase));
+                if (rol == null)
+                {
+                    return BadRequest($"El rol '{usuario.RolNombre}' no existe.");
+                }
+                usuario.RolID = rol.ID;
+            }
+            else
+            {
+                return BadRequest("El campo 'RolNombre' es obligatorio.");
+            }
+
             db.Usuario.Add(usuario);
             db.SaveChanges();
 

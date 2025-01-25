@@ -35,8 +35,23 @@ namespace AdministradorEventosAPI.Controllers
             return Ok(evento);
         }
 
-        // PUT: api/Eventoes/5
-        [ResponseType(typeof(void))]
+        // GET: api/Eventoes/ByUsuario/2
+        [HttpGet]
+        [Route("api/Eventoes/ByUsuario/{usuarioId}")]
+        [ResponseType(typeof(IQueryable<Evento>))]
+        public IHttpActionResult GetEventosByUsuario(int usuarioId)
+        {
+            var eventos = db.Evento.Where(e => e.UsuarioID == usuarioId);
+            if (!eventos.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(eventos);
+        }
+
+        // PUT: api/Eventoes/{id}
+        [ResponseType(typeof(Evento))]
         public IHttpActionResult PutEvento(int id, Evento evento)
         {
             if (!ModelState.IsValid)
@@ -44,9 +59,10 @@ namespace AdministradorEventosAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            //Verificamos si el ID de la URL coincide con el ID del evento
             if (id != evento.ID)
             {
-                return BadRequest();
+                return BadRequest("El ID del evento no coincide con el ID proporcionado en la URL.");
             }
 
             db.Entry(evento).State = EntityState.Modified;
@@ -67,8 +83,13 @@ namespace AdministradorEventosAPI.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            // Regresar el evento modificado
+            return Ok(evento);
         }
+
+
+
+
 
         // POST: api/Eventoes
         [ResponseType(typeof(Evento))]

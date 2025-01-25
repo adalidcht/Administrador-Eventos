@@ -9,25 +9,30 @@
 
 namespace AdministradorEventosAPI.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
     public partial class Usuario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
             this.Evento = new HashSet<Evento>();
         }
-    
+
+        [JsonIgnore]
         public int ID { get; set; }
+
         public string Nombre { get; set; }
         public string Correo { get; set; }
         public string Contraseña { get; set; }
         public Nullable<int> RolID { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        [JsonIgnore]
         public virtual ICollection<Evento> Evento { get; set; }
         public virtual Rol Rol { get; set; }
+
+        [JsonProperty("RolNombre")]
+        public string RolNombre { get; set; }
     }
 }
