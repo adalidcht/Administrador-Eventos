@@ -38,17 +38,14 @@ GO
 
 -- Insertar ejemplos en la tabla Rol
 INSERT INTO Rol (Nombre) VALUES ('Administrador');
-INSERT INTO Rol (Nombre) VALUES ('Organizador');
-INSERT INTO Rol (Nombre) VALUES ('Asistente');
-INSERT INTO Rol (Nombre) VALUES ('Invitado');
-INSERT INTO Rol (Nombre) VALUES ('Superusuario');
+INSERT INTO Rol (Nombre) VALUES ('Usuario');
 GO
 
 -- Insertar ejemplos en la tabla Usuario
 INSERT INTO Usuario (Nombre, Correo, Contraseña, RolID) VALUES 
 ('Juan Pérez', 'juan.perez@email.com', 'password123', 1),
 ('María López', 'maria.lopez@email.com', 'mypass456', 2),
-('Carlos Sánchez', 'carlos.sanchez@email.com', 'secure789', 3),
+('Carlos Sánchez', 'carlos.sanchez@email.com', 'secure789', 2),
 ('Ana Fernández', 'ana.fernandez@email.com', 'admin1234', 1),
 ('Luis Gómez', 'luis.gomez@email.com', 'organizer123', 2);
 GO
